@@ -7,11 +7,10 @@ export default hopeTheme({
 
   author: {
     name: "Hydra",
-    url: "https://mrhope.site",
+    url: "https://github.com/trunks2008",
   },
 
   iconAssets: "iconfont",
-  //iconAssets: ["iconfont","//at.alicdn.com/t/c/font_3991368_vxizcbrqaoo.css"],
 
   logo: "/logo64.jpg",
 
@@ -36,26 +35,6 @@ export default hopeTheme({
         editLink: "Edit this page on GitHub",
       },
     },
-
-    /**
-     * Chinese locale config
-     */
- //  "/zh/": {
- //    // navbar
- //    navbar: zhNavbar,
- //
- //    // sidebar
- //    sidebar: zhSidebar,
- //
- //    footer: "默认页脚",
- //
- //    displayFooter: true,
- //
- //    // page meta
- //    metaLocales: {
- //      editLink: "在 GitHub 上编辑此页",
- //    },
- //  },
   },
 
   encrypt: {

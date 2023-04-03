@@ -1,7 +1,7 @@
 ---
 home: true
 icon: home
-title: home
+title: JAVA
 heroImage: /logo1.jpg
 heroText: 码农参上
 tagline: 有趣、深入、直接，与你聊聊技术
