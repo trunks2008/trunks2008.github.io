@@ -22,7 +22,7 @@ String s="a"+"b"+"c";
 
 如果你比较一下Java源代码和反编译后的字节码文件，就可以直观的看到答案，只创建了一个String对象。
 
-![](https://gitee.com/trunks2008/picture/raw/master/2021-8-12/1628736584649-1.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ea50f5dc4ef14c6db24bed239f0a6f0a~tplv-k3u1fbpfcp-zoom-1.image)
 
 估计大家会有疑问了，为什么源代码中字符串拼接的操作，在编译完成后会消失，直接呈现为一个拼接后的完整字符串呢？
 
@@ -44,7 +44,7 @@ final String s2=UUID.randomUUID().toString()+"Hydra";
 
 编译器能够在编译期就得到`s1`的值是`hello Hydra`，不需要等到程序的运行期间，因此`s1`属于编译期常量。而对`s2`来说，虽然也被声明为`final`类型，并且在声明时就已经初始化，但使用的不是常量表达式，因此不属于编译期常量，这一类型的常量被称为**运行时常量**。再看一下编译后的字节码文件中的常量池区域：
 
-![](https://gitee.com/trunks2008/picture/raw/master/2021-8-15/1628995844434-3constant.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/86ce9586bb944f7fbcf94faedb69d6bf~tplv-k3u1fbpfcp-zoom-1.image)
 
 可以看到常量池中只有一个`String`类型的常量`hello Hydra`，而`s2`对应的字符串常量则不在此区域。对编译器来说，运行时常量在编译期间无法进行折叠，编译器只会对尝试修改它的操作进行报错处理。
 
@@ -107,7 +107,7 @@ false
 
 代码中字符串`h1`和`h2`都使用常量赋值，区别在于是否使用了`final`进行修饰，对比编译后的代码，`s1`进行了折叠而`s2`没有，可以印证上面的理论，`final`修饰的字符串变量属于编译期常量。
 
-![](https://gitee.com/trunks2008/picture/raw/master/2021-8-15/1629032304846-4final.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e73583159dc49e09749e4f5075032a4~tplv-k3u1fbpfcp-zoom-1.image)
 
 再看一段代码，执行下面的程序，结果会返回什么呢？
 
@@ -191,7 +191,7 @@ public static void main(String[] args) {
 
 然后使用`javap`对字节码文件进行反编译，可以看到在这一过程中，编译器同样会进行优化：
 
-![](https://gitee.com/trunks2008/picture/raw/master/2021-8-12/1628752466482-2append.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5c47d52e831042a988007ef601bd28e1~tplv-k3u1fbpfcp-zoom-1.image)
 
 可以看到，虽然我们在代码中没有显示的调用`StringBuilder`，但是在字符串拼接的场景下，Java编译器会自动进行优化，新建一个`StringBuilder`对象，然后调用`append`方法进行字符串的拼接。而在最后，调用了`StringBuilder`的`toString`方法，生成了一个新的字符串对象，而不是引用的常量池中的常量。这样，也就能解释为什么在上面的例子中，`s2=="ab"`会返回`false`了。
 
